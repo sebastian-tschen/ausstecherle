@@ -10,6 +10,6 @@ export class AppComponent implements OnInit {
   name = 'Angular';
 
   ngOnInit(){
-        paper.install( window );
+    
   }
 }
