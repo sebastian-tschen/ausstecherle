@@ -23,8 +23,8 @@ export class DrawingBoardComponent implements AfterViewInit {
 
     this.circle = new paper.Path.Ellipse(new paper.Rectangle(20, 20, 100, 100));
 
-    this.circle.strokeColor = "green";
-    this.circle.strokeWidth = 3;
+    // this.circle.strokeColor = "green";
+    // this.circle.strokeWidth = 3;
 
     this.scope.view.onMouseDown = this.onMouseDown.bind(this);
     this.scope.view.onMouseDrag = this.onMouseDrag.bind(this);
@@ -90,5 +90,9 @@ export class DrawingBoardComponent implements AfterViewInit {
       var percentage = 100 - Math.round((newSegmentCount / segmentCount) * 100);
       
     }
+  }
+
+  exportSVG(){
+    return this.scope.project.exportSVG({asString: true})
   }
 }
