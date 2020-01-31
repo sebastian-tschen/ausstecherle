@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
-import { paper, PointText, Point, Path, project } from "paper";
+import { Rectangle, PointText, Point, Path, project, PaperScope} from "paper";
 
 @Component({
   selector: "app-drawing-board",
@@ -16,12 +16,12 @@ export class DrawingBoardComponent implements AfterViewInit {
   scope;
   ngAfterViewInit() {
     // create a new scope
-    this.scope = new paper.PaperScope();
+    this.scope = new PaperScope();
     // bind it to the canvas
     this.scope.setup(this.canvas.nativeElement);
     // draw
 
-    this.circle = new paper.Path.Ellipse(new paper.Rectangle(20, 20, 100, 100));
+    this.circle = new Path.Ellipse(new Rectangle(20, 20, 100, 100));
 
     // this.circle.strokeColor = "green";
     // this.circle.strokeWidth = 3;
