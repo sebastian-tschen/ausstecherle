@@ -1,17 +1,17 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from "@angular/core";
-import { Rectangle, PointText, Point, Path, project, PaperScope} from "paper";
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { Rectangle, PointText, Point, Path, project, PaperScope} from 'paper';
 
 @Component({
-  selector: "app-drawing-board",
-  templateUrl: "./drawing-board.component.html",
-  styleUrls: ["./drawing-board.component.css"]
+  selector: 'app-drawing-board',
+  templateUrl: './drawing-board.component.html',
+  styleUrls: ['./drawing-board.component.css']
 })
 export class DrawingBoardComponent implements AfterViewInit {
-  @ViewChild("canvas", { static: false }) canvas: ElementRef;
+  @ViewChild('canvas', { static: false }) canvas: ElementRef;
 
   path: paper.Path;
   circle: paper.Path;
-  
+
   handle;
   scope;
   ngAfterViewInit() {
@@ -34,14 +34,14 @@ export class DrawingBoardComponent implements AfterViewInit {
 
     this.handle = null;
     // Do a hit test on path for handles:
-    var hitResult = this.scope.project.hitTest(event.point, {
+    const hitResult = this.scope.project.hitTest(event.point, {
       tolerance: 2,
       handles: true
     });
     if (hitResult) {
-      if (hitResult.type == "handle-in") {
+      if (hitResult.type == 'handle-in') {
         this.handle = hitResult.segment.handleIn;
-      } else if (hitResult.type == "handle-out") {
+      } else if (hitResult.type == 'handle-out') {
         this.handle = hitResult.segment.handleOut;
       }
     }
@@ -54,7 +54,7 @@ export class DrawingBoardComponent implements AfterViewInit {
       // Create a new path and set its stroke color to black:
       this.path = new Path({
         segments: [event.point],
-        strokeColor: "red",
+        strokeColor: 'red',
         strokeWidth: 10,
         // Select the path, so we can see its segment points:
         fullySelected: true
@@ -77,7 +77,7 @@ export class DrawingBoardComponent implements AfterViewInit {
   // When the mouse is released, we simplify the path:
   onMouseUp(event) {
     if (this.handle == null) {
-      var segmentCount = this.path.segments.length;
+      const segmentCount = this.path.segments.length;
 
       // When the mouse is released, simplify it:
       this.path.simplify(10);
@@ -85,14 +85,14 @@ export class DrawingBoardComponent implements AfterViewInit {
       // Select the path, so we can see its segments:
       this.path.fullySelected = true;
 
-      var newSegmentCount = this.path.segments.length;
-      var difference = segmentCount - newSegmentCount;
-      var percentage = 100 - Math.round((newSegmentCount / segmentCount) * 100);
-      
+      const newSegmentCount = this.path.segments.length;
+      const difference = segmentCount - newSegmentCount;
+      const percentage = 100 - Math.round((newSegmentCount / segmentCount) * 100);
+
     }
   }
 
-  exportSVG(){
-    return this.scope.project.exportSVG({asString: true})
+  exportSVG() {
+    return this.scope.project.exportSVG({asString: true});
   }
 }
