@@ -24,7 +24,7 @@
     "zone.js": "~0.9.1",
     "angular-stl-model-viewer": "^0.6.0",
     "paper": "^0.12.4",
-    "acorn": "^7.1.0",
+    "acorn": "^7.1.1",
     "three": "^0.110.0",
     "subsink": "^1.0.0",
     "hammerjs": "^2.0.8"
